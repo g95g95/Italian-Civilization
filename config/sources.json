@@ -1,0 +1,183 @@
+{
+ "eligendo": {
+  "name": "Eligendo open data (Camera, European Parliament, referendums)",
+  "publisher": "Ministero dell'Interno, DAIT",
+  "url": "https://elezionistorico.interno.gov.it/eligendo/opendata.php",
+  "licence": "open data; no licence named on the Eligendo open-data page (checked 2026-11-27)",
+  "vintage": "2016-2026, comune level",
+  "raw": "data/raw/eligendo/",
+  "script": "scripts/eligendo.py, scripts/elections.py",
+  "note": "Comune-level figures are the unofficial ones sent by comuni; national and constituency totals come from the official proclamations, so the two can differ (Eligendo, info_opendata.php).",
+  "short": "Interior Ministry"
+ },
+ "ondata2022": {
+  "name": "Camera 2022 national results as published on Eligendo (onData scrape)",
+  "publisher": "onData from Ministero dell'Interno",
+  "url": "https://github.com/ondata/elezioni-politiche-2022",
+  "licence": "CC BY 4.0",
+  "vintage": "2022, commit 43844d7",
+  "raw": "data/raw/ondata/",
+  "script": "tests/test_gates.py (check only)",
+  "short": "onData"
+ },
+ "ches": {
+  "name": "Chapel Hill Expert Survey, 1999-2024 trend file (means, V2)",
+  "publisher": "Jolly, Bakker, Hooghe, Marks, Polk, Rovny, Steenbergen, Vachudova",
+  "url": "https://www.chesdata.eu/ches-europe",
+  "licence": "free to use with citation: Rovny, Polk, Bakker, Hooghe, Jolly, Marks, Steenbergen, Vachudova (2025), 'The 2024 Chapel Hill Expert Survey on political party positioning in Europe'",
+  "vintage": "waves 2019 and 2024",
+  "raw": "data/raw/ches/",
+  "script": "scripts/political.py",
+  "short": "CHES"
+ },
+ "situas": {
+  "name": "SITUAS, list of comuni in force on a date (report 61)",
+  "publisher": "ISTAT",
+  "url": "https://situas.istat.it/",
+  "licence": "CC BY 4.0",
+  "vintage": "registers 2016-04-17 to 2026-11-27",
+  "raw": "data/raw/istat_situas/",
+  "script": "scripts/crosswalk.py",
+  "short": "ISTAT SITUAS"
+ },
+ "istat_codes": {
+  "name": "Codici statistici dei comuni; elenco comuni soppressi; novità 2026",
+  "publisher": "ISTAT",
+  "url": "https://www.istat.it/classificazione/codici-dei-comuni-delle-province-e-delle-regioni/",
+  "licence": "CC BY 4.0",
+  "vintage": "February 2026",
+  "raw": "data/raw/istat_codes/",
+  "script": "scripts/crosswalk.py",
+  "short": "ISTAT codes"
+ },
+ "istat_boundaries": {
+  "name": "Confini delle unità amministrative, generalised, 1 Jan 2026",
+  "publisher": "ISTAT",
+  "url": "https://www.istat.it/storage/cartografia/confini_amministrativi/generalizzati/2026/Limiti01012026_g.zip",
+  "licence": "CC BY 4.0",
+  "vintage": "2026-01-01",
+  "raw": "data/raw/istat_boundaries/",
+  "script": "scripts/crosswalk.py",
+  "short": "ISTAT boundaries"
+ },
+ "popgrid": {
+  "name": "Popolazione per griglia regolare 1 km, Censimento 2021",
+  "publisher": "ISTAT",
+  "url": "https://www.istat.it/notizia/statistiche-sulla-popolazione-per-griglia-regolare/",
+  "licence": "CC BY 4.0",
+  "vintage": "census 2021",
+  "raw": "data/raw/popgrid/",
+  "script": "scripts/grid.py",
+  "short": "ISTAT 1 km grid"
+ },
+ "istat_pop": {
+  "name": "Popolazione residente al 1° gennaio (DCIS_POPRES1)",
+  "publisher": "ISTAT",
+  "url": "https://esploradati.istat.it/SDMXWS/rest/data/22_289_DF_DASH_DCIS_POPRES1_1/A..JAN.9.TOTAL.99",
+  "licence": "CC BY 4.0",
+  "vintage": "1 January 2025 (final)",
+  "raw": "data/raw/istat_pop/",
+  "script": "scripts/socio.py",
+  "short": "ISTAT population"
+ },
+ "mef": {
+  "name": "Redditi e principali variabili IRPEF su base comunale",
+  "publisher": "MEF, Dipartimento delle Finanze",
+  "url": "https://www1.finanze.gov.it/finanze/analisi_stat/public/index.php?search_class%5B0%5D=cCOMUNE&opendata=yes",
+  "licence": "CC BY 3.0 IT",
+  "vintage": "tax year 2024 (returns filed 2025)",
+  "raw": "data/raw/mef/",
+  "script": "scripts/socio.py",
+  "short": "MEF"
+ },
+ "census": {
+  "name": "Censimento permanente della popolazione 2023: comune table DCSS_ISTR_LAV_PEN_2 and census-section variables (basi territoriali 2023)",
+  "publisher": "ISTAT",
+  "url": "https://www.istat.it/notizia/basi-territoriali-e-variabili-censuarie/",
+  "licence": "CC BY 4.0",
+  "vintage": "31 December 2023",
+  "raw": "data/raw/istat_census/",
+  "script": "scripts/socio.py",
+  "short": "ISTAT census"
+ },
+ "asia": {
+  "name": "Registro statistico delle unità locali (ASIA-UL): addetti per comune e sezione Ateco",
+  "publisher": "ISTAT",
+  "url": "https://esploradati.istat.it/SDMXWS/rest/data/183_1163_DF_DICA_ASIAULP_TERRIFDATA_3/",
+  "licence": "CC BY 4.0",
+  "vintage": "2024",
+  "raw": "data/raw/istat_asia/",
+  "script": "scripts/socio.py",
+  "short": "ISTAT ASIA"
+ },
+ "tinitaly": {
+  "name": "TINITALY 1.1 digital elevation model (WCS, 250 m sampling of the 10 m grid)",
+  "publisher": "INGV (Tarquini et al. 2023)",
+  "url": "https://doi.org/10.13127/tinitaly/1.1",
+  "licence": "CC BY 4.0",
+  "vintage": "2023",
+  "raw": "data/raw/dem/tinitaly_wcs/",
+  "script": "scripts/terrain.py",
+  "short": "INGV TINITALY"
+ },
+ "luisa": {
+  "name": "LUISA Base Map 2018 (100 m refinement of CORINE Land Cover 2018)",
+  "publisher": "European Commission, JRC",
+  "url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/LUISA/EUROPE/Basemaps/2018/VER2021-03-24/",
+  "licence": "CC BY 4.0",
+  "vintage": "2018",
+  "raw": "data/raw/landcover/luisa_basemap_2018/",
+  "script": "scripts/terrain.py",
+  "short": "JRC LUISA"
+ },
+ "ingv": {
+  "name": "INGV earthquake catalogue (FDSN event service), M >= 4.0 since 1985",
+  "publisher": "INGV, ISIDe Working Group",
+  "url": "https://webservices.ingv.it/fdsnws/event/1/query?starttime=1985-01-01T00:00:00&endtime=2026-11-01T00:00:00&minmag=4.0&minlat=35&maxlat=48&minlon=6&maxlon=19.5&format=text&orderby=time-asc&limit=20000",
+  "licence": "CC BY 4.0 (INGV data policy; cite ISIDe Working Group, INGV)",
+  "vintage": "1985-01-01 to 2026-11-01",
+  "raw": "data/raw/ingv/",
+  "script": "scripts/layers.py",
+  "short": "INGV"
+ },
+ "ispra": {
+  "name": "IdroGEO, indicatori di rischio idrogeologico per comune",
+  "publisher": "ISPRA",
+  "url": "https://idrogeo.isprambiente.it/app/page/open-data",
+  "licence": "CC BY 4.0",
+  "vintage": "landslides mosaic 2024, floods mosaic 2020",
+  "raw": "data/raw/ispra/",
+  "script": "scripts/layers.py",
+  "short": "ISPRA"
+ },
+ "sll": {
+  "name": "Composizione dei sistemi locali del lavoro 2011 al 1 gennaio 2023",
+  "publisher": "ISTAT",
+  "url": "https://www.istat.it/wp-content/uploads/2021/01/Composizione-SLL2011-01012023.zip",
+  "licence": "CC BY 4.0",
+  "vintage": "SLL 2011, comuni at 2023-01-01",
+  "raw": "data/raw/istat_sll/",
+  "script": "scripts/layers.py",
+  "short": "ISTAT SLL"
+ },
+ "unesco": {
+  "name": "UNESCO World Heritage List export (2023, GitHub mirror of whc-sites)",
+  "publisher": "UNESCO World Heritage Centre",
+  "url": "https://github.com/alfonsoledesmaa/whc-sites",
+  "licence": "© UNESCO, reuse with attribution",
+  "vintage": "2023",
+  "raw": "data/raw/unesco/",
+  "script": "scripts/layers.py",
+  "short": "UNESCO"
+ },
+ "ports": {
+  "name": "Eurostat mar_go_am_it (goods handled in main Italian ports) and GISCO port points",
+  "publisher": "Eurostat / GISCO",
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/mar_go_am_it/default/table",
+  "licence": "© European Union, reuse with attribution",
+  "vintage": "latest year with data",
+  "raw": "data/raw/ports/",
+  "script": "scripts/layers.py",
+  "short": "Eurostat"
+ }
+}

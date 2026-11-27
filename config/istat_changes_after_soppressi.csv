@@ -1,0 +1,7 @@
+# Comuni suppressed after the ISTAT "Elenco comuni soppressi" file was last updated (Jan 2024).
+# Transcribed from ISTAT, "Codici statistici delle unità amministrative territoriali - Novità per l'anno 2026"
+# (data/raw/istat_codes/Novita-2026-2017-26febbraio2026.pdf). Codes as listed in ISTAT SITUAS on the day before the event.
+old_code,old_name,event_date,new_code,new_name,kind
+018082,Lirio,31/01/2026,018094,Montalto Pavese,incorporazione
+024027,Castegnero,21/02/2026,024129,Castegnero Nanto,fusione
+024071,Nanto,21/02/2026,024129,Castegnero Nanto,fusione

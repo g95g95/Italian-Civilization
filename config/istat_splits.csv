@@ -1,0 +1,5 @@
+# New comuni created by splitting territory off an existing comune (scorporo), 2016 onward.
+# Source: same ISTAT "Novità" PDF ("20 febbraio 2021 Istituito il Comune di Misiliscemi (TP) mediante scorporo dal Comune di Trapani").
+# Before the event date the parent's results cover both current comuni.
+parent_code,parent_name,event_date,child_code,child_name
+081021,Trapani,20/02/2021,081025,Misiliscemi

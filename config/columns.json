@@ -1,0 +1,53 @@
+{
+  "thresholds": {"district_lq": 1.5, "citizen_jobs": 5000, "list_keep_share": 0.5, "min_land": 0.15, "plains_below_m": 300, "hills_below_m": 600, "forest_share": 0.5, "marsh_share": 0.05, "coast_sea_share": 0.01},
+  "method": [
+    "Base unit: the comune, joined on the six-digit ISTAT code. Every older code (2016-2026) is mapped to the 7,894 comuni in force today through ISTAT's register and its published list of mergers.",
+    "The Interior Ministry's files name comuni without codes. Each name is looked up, exactly, in ISTAT's list of comuni in force on polling day; the few labels that differ are listed one by one in config/name_aliases.csv.",
+    "Grid: pointy-top hexagons 10 km across the flats, in UTM zone 32N. A tile is kept when at least 15% of it is land: 3,716 tiles.",
+    "Counts (votes, electors, residents, euros, jobs) are spread from comuni to tiles by where people live, using ISTAT's 2021 census grid of 1 km cells. Areas (hazard zones) are spread by area. Rates are worked out after spreading, never averaged.",
+    "Residents on a dropped coastal sliver move to the nearest kept tile, so nobody leaves the map. Tiles or comuni without data are drawn as missing, never filled in.",
+    "Camera: votes cast for a candidate only are shared among that candidate's lists in proportion to their votes in the single-member constituency, as the electoral law does.",
+    "Ideology: each list takes its score from the Chapel Hill Expert Survey wave closest to the vote. A joint list takes the simple mean of its scored member parties. Lists without a score are left out of the average and each tile reports the share of valid votes that had one.",
+    "Vote from abroad is not on the map. National figures in the app are Italy only."
+  ],
+  "sectors": {"B": "Mining", "C": "Manufacturing", "D": "Energy", "E": "Water and waste", "F": "Construction", "G": "Trade", "H": "Transport", "I": "Hotels and food", "J": "Information", "K": "Finance", "L": "Real estate", "M": "Professional services", "N": "Business support", "P": "Education", "Q": "Health and care", "R": "Arts and leisure", "S": "Other services"},
+  "rules": [
+    {"term": "Ideology (religion layer)", "quantity": "Left-right expert score", "rule": "Average of each list's CHES general left-right score (0 far left, 10 far right), weighted by its valid votes on the tile.", "source": ["eligendo", "ches"]},
+    {"term": "Economic and social axes", "quantity": "CHES lrecon and galtan", "rule": "The same vote-weighted average with the survey's economic left-right and GAL-TAN scores.", "source": ["eligendo", "ches"]},
+    {"term": "Loyalty", "quantity": "Turnout", "rule": "Voters divided by electors.", "source": ["eligendo"]},
+    {"term": "Coalition margin", "quantity": "Centre-right minus centre-left", "rule": "Valid votes of the registered centre-right coalition lists minus those of the centre-left lists, in points of valid votes (Camera only).", "source": ["eligendo"]},
+    {"term": "Swing", "quantity": "Change in ideology score", "rule": "Ideology score at the chosen election minus the score at the earlier one, tile by tile.", "source": ["eligendo", "ches"]},
+    {"term": "Gold", "quantity": "Declared income", "rule": "Total taxable income (reddito imponibile IRPEF) on the tile; the map colours it per resident.", "source": ["mef", "istat_pop"]},
+    {"term": "Science", "quantity": "Graduates", "rule": "Residents with a tertiary degree; the map colours them as a share of residents aged 25 and over.", "source": ["census"]},
+    {"term": "Production", "quantity": "Industrial employment", "rule": "Jobs in local units of manufacturing and construction firms (Ateco C and F); the map colours their share of all local jobs.", "source": ["asia"]},
+    {"term": "Food", "quantity": "Farmland", "rule": "Share of the tile's land in agricultural land-cover classes (CORINE 2xx).", "source": ["luisa"]},
+    {"term": "Terrain", "quantity": "Elevation and land cover", "rule": "Plains below 300 m mean elevation, hills to 600 m, mountains above; forest where forest covers half the land, marsh where wetlands and lagoons cover 5% of the tile, coast where sea covers 1% of it.", "source": ["tinitaly", "luisa"]},
+    {"term": "City", "quantity": "Labour-market area", "rule": "One city per ISTAT labour-market area (sistema locale del lavoro 2011), placed on the comune ISTAT names as its main one.", "source": ["sll"]},
+    {"term": "Districts", "quantity": "Industry specialisation", "rule": "A sector whose share of the city's jobs is at least 1.5 times its national share.", "source": ["asia"]},
+    {"term": "Citizens", "quantity": "Workforce", "rule": "Jobs by sector in local units of firms, one square per 5,000 jobs.", "source": ["asia"]},
+    {"term": "Wonders", "quantity": "Landmarks", "rule": "UNESCO World Heritage sites, and ports ranked by goods handled in the latest year.", "source": ["unesco", "ports"]},
+    {"term": "Government", "quantity": "Winning coalition", "rule": "The coalition, or list running alone, with most valid votes in the city at the Camera 2022 vote.", "source": ["eligendo"]},
+    {"term": "Hazards", "quantity": "Earthquakes, landslides, floods", "rule": "Earthquakes of magnitude 4 or more since 1985 with the epicentre on the tile; land in ISPRA landslide classes P3-P4 and flood class P2.", "source": ["ingv", "ispra"]}
+  ],
+  "columns": {
+    "area_km2": {"label": "Area (km²)", "source": "istat_boundaries", "rule": "area of the 2026 ISTAT polygon"},
+    "elev": {"label": "Mean elevation (m)", "source": "tinitaly", "rule": "mean of DEM pixels inside the comune"},
+    "farmland": {"label": "Farmland (% of land)", "source": "luisa", "rule": "agricultural land-cover share"},
+    "forest": {"label": "Forest (% of land)", "source": "luisa", "rule": "forest land-cover share"},
+    "quakes": {"label": "Earthquakes M4+ since 1985", "source": "ingv", "rule": "epicentres inside the comune"},
+    "landslide_pct": {"label": "Landslide hazard (% of area)", "source": "ispra", "rule": "ISPRA P3+P4 area / comune area"},
+    "flood_pct": {"label": "Flood hazard (% of area)", "source": "ispra", "rule": "ISPRA P2 area / comune area"},
+    "pop_res": {"label": "Residents", "source": "istat_pop", "rule": "resident population on 1 January 2025"},
+    "density": {"label": "Residents per km²", "source": "istat_pop", "rule": "residents / area"},
+    "income_per_taxpayer": {"label": "Taxable income per taxpayer (€)", "source": "mef", "rule": "reddito imponibile / taxpayers, tax year 2024"},
+    "income_per_resident": {"label": "Taxable income per resident (€)", "source": "mef", "rule": "reddito imponibile 2024 / residents 1 Jan 2025"},
+    "grad_pct": {"label": "Graduates (% of 25+)", "source": "census", "rule": "residents with a tertiary degree / residents aged 25+"},
+    "old_pct": {"label": "Aged 65+ (%)", "source": "census", "rule": "residents aged 65+ / residents"},
+    "foreign_pct": {"label": "Foreign citizens (%)", "source": "census", "rule": "residents with foreign citizenship / residents"},
+    "employment_pct": {"label": "Employment rate 15+ (%)", "source": "census", "rule": "employed residents / residents aged 15+"},
+    "unemployment_pct": {"label": "Unemployment rate (%)", "source": "census", "rule": "unemployed / labour force"},
+    "ind_jobs_pct": {"label": "Industrial jobs (% of local jobs)", "source": "asia", "rule": "Ateco C+F jobs / all jobs in local units of firms"},
+    "jobs_per_resident": {"label": "Local jobs per resident", "source": "asia", "rule": "jobs in local units of firms / residents"}
+  },
+  "gaps": []
+}

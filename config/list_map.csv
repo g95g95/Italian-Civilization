@@ -1,0 +1,50 @@
+# Ministry list label -> short name, Chapel Hill Expert Survey member parties, coalition.
+# ches: CHES party_id(s) of the list's member parties that the survey scores, joined by ';'.
+#   A joint list takes the simple mean of its scored members (spec, "Political layer").
+#   Empty = no member party is scored: the list is left out of the average and counted in coverage.
+# wave: CHES wave used (2019 for 2018-2019 votes, 2024 for 2022-2024 votes).
+# coalition: cdx (centre-right) / csx (centre-left) as registered for the Camera; empty otherwise.
+# Valle d'Aosta single-member contests are not listed here: they get a note, not a score.
+election,list,short,ches,wave,coalition,note
+cam2018,MOVIMENTO 5 STELLE,M5S,845,2019,,
+cam2018,PARTITO DEMOCRATICO,PD,837,2019,csx,
+cam2018,LEGA,Lega,811,2019,cdx,CHES LN
+cam2018,FORZA ITALIA,FI,815,2019,cdx,
+cam2018,FRATELLI D'ITALIA CON GIORGIA MELONI,FdI,844,2019,cdx,
+cam2018,LIBERI E UGUALI,LeU,838,2019,,members SI (scored) + Articolo 1-MDP and Possibile (not scored)
+cam2018,+EUROPA,+E,813,2019,csx,members Radicali Italiani (scored) + Forza Europa and Centro Democratico (not scored)
+cam2018,NOI CON L'ITALIA - UDC,NcI,,2019,cdx,not scored
+cam2018,ITALIA EUROPA INSIEME,Insieme,,2019,csx,not scored
+cam2018,CIVICA POPOLARE LORENZIN,CP,,2019,csx,not scored
+cam2018,SVP - PATT,SVP,827,2019,csx,members SVP (scored) + PATT (not scored)
+cam2022,FRATELLI D'ITALIA CON GIORGIA MELONI,FdI,844,2024,cdx,
+cam2022,PARTITO DEMOCRATICO - ITALIA DEMOCRATICA E PROGRESSISTA,PD,837,2024,csx,
+cam2022,MOVIMENTO 5 STELLE,M5S,845,2024,,
+cam2022,LEGA PER SALVINI PREMIER,Lega,811,2024,cdx,
+cam2022,FORZA ITALIA,FI,815,2024,cdx,
+cam2022,AZIONE - ITALIA VIVA - CALENDA,A-IV,849,2024,,CHES 2024 scores Azione-Italia Viva as one party (id 849)
+cam2022,ALLEANZA VERDI E SINISTRA,AVS,838;850,2024,csx,members SI and EV
+cam2022,+EUROPA,+E,832,2024,csx,
+cam2022,NOI MODERATI/LUPI - TOTI - BRUGNARO - UDC,NM,,2024,cdx,not scored
+cam2022,IMPEGNO CIVICO LUIGI DI MAIO - CENTRO DEMOCRATICO,IC,,2024,csx,not scored
+cam2022,SUDTIROLER VOLKSPARTEI (SVP) - PATT,SVP,827,2024,,members SVP (scored) + PATT (not scored)
+eu2019,LEGA SALVINI PREMIER,Lega,811,2019,,
+eu2019,PARTITO DEMOCRATICO,PD,837,2019,,
+eu2019,MOVIMENTO 5 STELLE,M5S,845,2019,,
+eu2019,FORZA ITALIA,FI,815,2019,,
+eu2019,FRATELLI D'ITALIA,FdI,844,2019,,
+eu2019,+EUROPA - ITALIA IN COMUNE - PDE ITALIA,+E,,2019,,members +Europa party / Italia in Comune / PDE: none scored in the 2019 wave (Radicali Italiani is scored but was not on this symbol)
+eu2019,EUROPA VERDE,EV,,2019,,not scored in the 2019 wave
+eu2019,LA SINISTRA,LS,838,2019,,members SI (scored) + Rifondazione Comunista (not scored)
+eu2019,SVP,SVP,827,2019,,
+eu2024,FRATELLI D'ITALIA,FdI,844,2024,,
+eu2024,PARTITO DEMOCRATICO,PD,837,2024,,
+eu2024,MOVIMENTO 5 STELLE,M5S,845,2024,,
+eu2024,FORZA ITALIA - NOI MODERATI - PPE,FI-NM,815,2024,,members FI (scored) + Noi Moderati (not scored)
+eu2024,LEGA SALVINI PREMIER,Lega,811,2024,,
+eu2024,ALLEANZA VERDI E SINISTRA,AVS,838;850,2024,,members SI and EV
+eu2024,STATI UNITI D'EUROPA,SUE,832,2024,,members +E (scored) + Italia Viva / PSI / Radicali / LDE (not scored separately)
+eu2024,AZIONE - SIAMO EUROPEI,Az,849,2024,,CHES id 849 (Azione)
+eu2024,PACE TERRA DIGNITA',PTD,,2024,,not scored
+eu2024,LIBERTA',Lib,,2024,,not scored
+eu2024,SÜDTIROLER VOLKSPARTEI (SVP),SVP,827,2024,,

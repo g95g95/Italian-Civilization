@@ -424,3 +424,19 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+## Civ Italia
+# raw downloads are re-fetched by `make download`; keep only their manifests
+data/raw/**
+!data/raw/
+!data/raw/*/
+!data/raw/MANIFEST.csv
+!data/raw/*/MANIFEST.md
+data/processed/
+__pycache__/
+.pytest_cache/
+# small audit tables are kept in git
+!data/processed/
+data/processed/*
+!data/processed/crosswalk.csv
+!data/processed/names/

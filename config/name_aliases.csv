@@ -1,0 +1,21 @@
+# Ministry labels that do not match the ISTAT name exactly, each with the ISTAT code it stands for.
+# Every entry was checked by hand against the electors count and province in the source file.
+election,region,province,comune,code,note
+cam2018,CALABRIA,,IONADI,102017,ISTAT spells Jonadi (VV)
+cam2022,CALABRIA,,IONADI,102017,ISTAT spells Jonadi (VV)
+cam2022,PIEMONTE,,CALLIANO,005014,renamed Calliano Monferrato (AT) in 2022; the other Calliano is in Trentino
+eu2019,CALABRIA,VIBO VALENTIA,IONADI,102017,ISTAT spells Jonadi
+ref2016a,CALABRIA,VIBO VALENTIA,IONADI,102017,ISTAT spells Jonadi
+ref2016c,CALABRIA,VIBO VALENTIA,IONADI,102017,ISTAT spells Jonadi
+ref2020,CALABRIA,VIBO VALENTIA,IONADI,102017,ISTAT spells Jonadi
+ref2022,CALABRIA,VIBO VALENTIA,IONADI,102017,ISTAT spells Jonadi
+ref2016a,PIEMONTE,ALESSANDRIA,CERRINA,006059,ISTAT name Cerrina Monferrato
+ref2016c,PIEMONTE,ALESSANDRIA,CERRINA,006059,ISTAT name Cerrina Monferrato
+ref2016a,LOMBARDIA,BRESCIA,TREMOSINE,017189,ISTAT name Tremosine sul Garda
+ref2016c,LOMBARDIA,BRESCIA,TREMOSINE,017189,ISTAT name Tremosine sul Garda
+ref2016a,LIGURIA,IMPERIA,COSIO DI ARROSCIA,008023,ISTAT name Cosio d'Arroscia
+ref2016c,LIGURIA,IMPERIA,COSIO DI ARROSCIA,008023,ISTAT name Cosio d'Arroscia
+ref2016a,CALABRIA,REGGIO CALABRIA,MONTEBELLO IONICO,080053,ISTAT spells Montebello Jonico
+ref2016c,CALABRIA,REGGIO CALABRIA,MONTEBELLO IONICO,080053,ISTAT spells Montebello Jonico
+ref2025,SICILIA,MESSINA,MOJO ALCANTARA,083053,ISTAT spells Moio Alcantara
+ref2026,SICILIA,MESSINA,MOJO ALCANTARA,083053,ISTAT spells Moio Alcantara
