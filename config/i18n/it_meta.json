@@ -1,0 +1,251 @@
+{
+ "method": [
+  "Unità di base: il comune, collegato tramite il codice ISTAT a sei cifre. Ogni codice più vecchio (2016-2026) è ricondotto ai 7.894 comuni oggi in vigore attraverso il registro ISTAT e il suo elenco pubblicato delle fusioni.",
+  "I file del Ministero dell'Interno indicano i comuni senza codice. Ogni nome viene cercato, in modo esatto, nell'elenco ISTAT dei comuni in vigore alla data del voto; le poche etichette diverse sono elencate una per una in config/name_aliases.csv.",
+  "Griglia: esagoni a punta in alto, di 10 km tra i lati piatti, nel sistema UTM fuso 32N. Una casella è mantenuta se almeno il 15% della sua superficie è terra: 3.716 caselle.",
+  "I conteggi (voti, elettori, residenti, euro, addetti) sono distribuiti dai comuni alle caselle in base a dove vivono le persone, usando la griglia da 1 km di celle del censimento ISTAT 2021. Le superfici (zone di pericolo) sono distribuite in base all'area. I tassi sono calcolati dopo la distribuzione, mai come medie.",
+  "I residenti di una striscia costiera scartata passano alla casella mantenuta più vicina, così nessuno resta fuori dalla mappa. Le caselle o i comuni privi di dati sono disegnati come mancanti, mai riempiti con stime.",
+  "Camera: i voti dati solo a un candidato sono ripartiti tra le liste di quel candidato in proporzione ai loro voti nel collegio uninominale, come prevede la legge elettorale.",
+  "Ideologia: ogni lista prende il punteggio dall'ondata della Chapel Hill Expert Survey più vicina al voto. Una lista congiunta prende la media semplice dei partiti membri che hanno un punteggio. Le liste senza punteggio sono escluse dalla media e ogni casella indica la quota di voti validi che ne avevano uno.",
+  "Il voto dall'estero non è sulla mappa. I dati nazionali dell'app riguardano solo l'Italia."
+ ],
+ "rules": [
+  {
+   "term": "Ideologia (la religione del gioco)",
+   "quantity": "Punteggio degli esperti sinistra-destra",
+   "rule": "Media del punteggio generale CHES sinistra-destra di ciascuna lista (0 estrema sinistra, 10 estrema destra), ponderata per i suoi voti validi nella casella."
+  },
+  {
+   "term": "Assi economico e sociale",
+   "quantity": "CHES lrecon e galtan",
+   "rule": "La stessa media ponderata per i voti, con i punteggi dell'indagine su sinistra-destra economica e GAL-TAN."
+  },
+  {
+   "term": "Lealtà",
+   "quantity": "Affluenza",
+   "rule": "Votanti divisi per elettori."
+  },
+  {
+   "term": "Margine tra coalizioni",
+   "quantity": "Centrodestra meno centrosinistra",
+   "rule": "Voti validi delle liste delle coalizioni di centrodestra registrate meno quelli delle liste di centrosinistra, in punti di voti validi (solo Camera)."
+  },
+  {
+   "term": "Spostamento",
+   "quantity": "Variazione del punteggio di ideologia",
+   "rule": "Punteggio di ideologia nella elezione scelta meno quello nella elezione precedente, casella per casella."
+  },
+  {
+   "term": "Oro",
+   "quantity": "Reddito dichiarato",
+   "rule": "Reddito imponibile totale (reddito imponibile IRPEF) della casella; la mappa lo colora per residente."
+  },
+  {
+   "term": "Scienza",
+   "quantity": "Laureati",
+   "rule": "Residenti con titolo di istruzione terziaria; la mappa li colora come quota dei residenti di 25 anni e oltre."
+  },
+  {
+   "term": "Produzione",
+   "quantity": "Occupazione industriale",
+   "rule": "Addetti delle unità locali di imprese manifatturiere e di costruzioni (Ateco C e F); la mappa colora la loro quota di tutti gli addetti locali."
+  },
+  {
+   "term": "Cibo",
+   "quantity": "Terreni agricoli",
+   "rule": "Quota del suolo della casella nelle classi di copertura agricola CORINE 2xx."
+  },
+  {
+   "term": "Terreno",
+   "quantity": "Altitudine e copertura del suolo",
+   "rule": "Pianura sotto i 300 m di altitudine media, collina fino a 600 m, montagna sopra; bosco dove il bosco copre metà del suolo, palude dove zone umide e lagune coprono il 5% della casella, costa dove il mare copre l'1%."
+  },
+  {
+   "term": "Città",
+   "quantity": "Sistema locale del lavoro",
+   "rule": "Una città per ogni sistema locale del lavoro ISTAT (2011), collocata sul comune che ISTAT indica come principale."
+  },
+  {
+   "term": "Distretti",
+   "quantity": "Specializzazione industriale",
+   "rule": "Un settore il cui peso sugli addetti della città è almeno 1,5 volte il suo peso nazionale."
+  },
+  {
+   "term": "Cittadini",
+   "quantity": "Forza lavoro",
+   "rule": "Addetti per settore nelle unità locali delle imprese, un quadratino ogni 5,000 addetti."
+  },
+  {
+   "term": "Meraviglie",
+   "quantity": "Punti di riferimento",
+   "rule": "Siti UNESCO Patrimonio dell'Umanità e porti ordinati per merci movimentate nell'ultimo anno disponibile."
+  },
+  {
+   "term": "Governo",
+   "quantity": "Coalizione vincente",
+   "rule": "La coalizione, o la lista che corre da sola, con più voti validi nella città alle elezioni Camera 2022."
+  },
+  {
+   "term": "Rischi",
+   "quantity": "Terremoti, frane, alluvioni",
+   "rule": "Terremoti di magnitudo 4 o superiore dal 1985 con epicentro nella casella; terreno nelle classi di frana ISPRA P3-P4 e di alluvione P2."
+  }
+ ],
+ "columns": {
+  "area_km2": {
+   "label": "Superficie (km²)",
+   "rule": "superficie del poligono ISTAT 2026"
+  },
+  "elev": {
+   "label": "Altitudine media (m)",
+   "rule": "media dei pixel del DEM all'interno del comune"
+  },
+  "farmland": {
+   "label": "Terreni agricoli (% del suolo)",
+   "rule": "quota di copertura agricola del suolo"
+  },
+  "forest": {
+   "label": "Bosco (% del suolo)",
+   "rule": "quota di bosco nella copertura del suolo"
+  },
+  "quakes": {
+   "label": "Terremoti M4+ dal 1985",
+   "rule": "epicentri all'interno del comune"
+  },
+  "landslide_pct": {
+   "label": "Pericolo frane (% della superficie)",
+   "rule": "superficie ISPRA P3+P4 / superficie del comune"
+  },
+  "flood_pct": {
+   "label": "Pericolo alluvioni (% della superficie)",
+   "rule": "superficie ISPRA P2 / superficie del comune"
+  },
+  "pop_res": {
+   "label": "Residenti",
+   "rule": "popolazione residente al 1° gennaio 2025"
+  },
+  "density": {
+   "label": "Residenti per km²",
+   "rule": "residenti / superficie"
+  },
+  "income_per_taxpayer": {
+   "label": "Reddito imponibile per contribuente (€)",
+   "rule": "reddito imponibile / contribuenti, anno d'imposta 2024"
+  },
+  "income_per_resident": {
+   "label": "Reddito imponibile per residente (€)",
+   "rule": "reddito imponibile 2024 / residenti al 1° gennaio 2025"
+  },
+  "grad_pct": {
+   "label": "Laureati (% dei 25+)",
+   "rule": "residenti con titolo di istruzione terziaria / residenti di 25 anni e oltre"
+  },
+  "old_pct": {
+   "label": "Di 65 anni e oltre (%)",
+   "rule": "residenti di 65 anni e oltre / residenti"
+  },
+  "foreign_pct": {
+   "label": "Cittadini stranieri (%)",
+   "rule": "residenti con cittadinanza straniera / residenti"
+  },
+  "employment_pct": {
+   "label": "Tasso di occupazione 15+ (%)",
+   "rule": "occupati residenti / residenti di 15 anni e oltre"
+  },
+  "unemployment_pct": {
+   "label": "Tasso di disoccupazione (%)",
+   "rule": "disoccupati / forza lavoro"
+  },
+  "ind_jobs_pct": {
+   "label": "Posti di lavoro industriali (% degli addetti locali)",
+   "rule": "addetti Ateco C+F / tutti gli addetti delle unità locali di imprese"
+  },
+  "jobs_per_resident": {
+   "label": "Addetti locali per residente",
+   "rule": "addetti delle unità locali di imprese / residenti"
+  }
+ },
+ "sectors": {
+  "B": "Estrazione di minerali",
+  "C": "Manifattura",
+  "D": "Energia",
+  "E": "Acqua e rifiuti",
+  "F": "Costruzioni",
+  "G": "Commercio",
+  "H": "Trasporti",
+  "I": "Alberghi e ristorazione",
+  "J": "Informazione",
+  "K": "Finanza",
+  "L": "Immobiliare",
+  "M": "Servizi professionali",
+  "N": "Servizi di supporto alle imprese",
+  "P": "Istruzione",
+  "Q": "Sanità e assistenza",
+  "R": "Arte e intrattenimento",
+  "S": "Altri servizi"
+ },
+ "elections": {
+  "ref2016a": "Referendum 17 apr 2016 (trivellazioni in mare)",
+  "ref2016c": "Referendum costituzionale 4 dic 2016",
+  "cam2018": "Camera 2018",
+  "eu2019": "Parlamento europeo 2019",
+  "ref2020": "Referendum costituzionale 20–21 set 2020",
+  "ref2022": "Referendum 12 giu 2022 (giustizia)",
+  "cam2022": "Camera 2022",
+  "eu2024": "Parlamento europeo 2024",
+  "ref2025": "Referendum 8–9 giu 2025 (lavoro, cittadinanza)",
+  "ref2026": "Referendum costituzionale 22–23 mar 2026 (magistratura)"
+ },
+ "gaps": [
+  "I file open-data del Ministero dell'Interno indicano i comuni ma non riportano il codice ISTAT. La build li collega con una ricerca esatta nel registro ISTAT per il giorno delle elezioni (scripts/names.py), più 18 grafie verificate a mano in config/name_aliases.csv. Questo è l'unico passaggio basato sui nomi, ed è una deviazione dalla regola «i collegamenti avvengono sui codici ISTAT, mai sui nomi». Gli altri dataset (MEF, ISTAT, ISPRA, ASIA) riportano i codici e si collegano tramite essi.",
+  "Camera 2022: la pagina open-data del Ministero indica che i dati a livello di comune sono quelli non ufficiali inviati dai comuni, mentre i totali nazionali provengono dalle proclamazioni ufficiali, per cui i due possono differire. I voti solo al candidato sono inoltre ripartiti tra le liste della coalizione a livello di sezione elettorale, cosa che i dati comunali non possono riprodurre esattamente. Ogni lista rientra entro 0,1% del totale nazionale ufficiale, tranne i due partner di coalizione più piccoli: Noi Moderati (−0,37%) e Impegno Civico (−0,17%). Camera 2018, ricostruita allo stesso modo, è entro 0,03% per ogni lista.",
+  "Nei dati open-data del Ministero non esiste un dato nazionale indipendente per le europee 2019, per i referendum 2016 né per il referendum 2020: esiste solo il file a livello di comune. Per quelle votazioni il controllo verifica che nessun voto vada perso tra comuni e caselle, non che i totali coincidano con un conteggio ministeriale separato.",
+  "I file a livello di sezione per le europee 2024 e per i referendum 2025 e 2026 sono incompleti (ad esempio, interi comuni siciliani mancano nel file 2026). Sono usati solo per confermare, comune per comune, i dati del file completo a livello di comune.",
+  "Il voto dall'estero non è sulla mappa (non ha una collocazione territoriale). I dati nazionali nell'app riguardano solo l'Italia.",
+  "La Valle d'Aosta elegge il proprio deputato in un collegio uninominale con simboli locali. Le sue caselle della Camera mostrano affluenza e quote dei candidati, ma nessun punteggio di ideologia. Le elezioni europee e i referendum coprono la Valle d'Aosta normalmente.",
+  "Europee 2019: la lista +Europa (+Europa, Italia in Comune, PDE) ed Europa Verde non hanno punteggio, perché l'ondata di indagine 2019 non ha valutato nessuno dei due partiti; insieme raccolgono il 5,4% dei voti validi. Radicali Italiani ha un punteggio, ma non era un partito con quel simbolo. Nel voto alla Camera 2018, +Europa era una lista congiunta che includeva Radicali Italiani, quindi assume il punteggio di quel partito. Questa scelta cambia il significato del dato 2019 e va confermata.",
+  "CORINE Land Cover 2018 non è stato scaricabile: tutti gli host EEA hanno fallito attraverso il proxy di questo ambiente. La copertura del suolo usa la JRC LUISA Base Map 2018, un affinamento a 100 m di CORINE 2018 che mantiene i codici di classe CORINE.",
+  "L'altitudine usa TINITALY 1.1 campionato a 250 m tramite il servizio di copertura dell'INGV, non la griglia completa a 10 m (diversi GB). Le medie sulle caselle da 10 km non sono influenzate; i picchi singoli risultano leggermente bassi.",
+  "Università: il portale open-data del MUR (dati-ustat.mur.gov.it) non ha risposto attraverso il proxy, quindi il livello Meraviglie contiene solo i siti UNESCO e i porti.",
+  "UNESCO: gli endpoint ufficiali della lista sono protetti da una verifica anti-bot. I siti provengono dall'esportazione UNESCO del 2023 (mirror su GitHub), quindi mancano i tre siti italiani iscritti dopo il 2023, e quattro siti transfrontalieri il cui punto di riferimento si trova all'estero non hanno una casella.",
+  "Sistemi locali del lavoro: ISTAT ha pubblicato a ottobre 2025 una delimitazione del 2021 (515 sistemi), ma la tabella comune-sistema è disponibile solo su SITUAS, che questo ambiente non è riuscito a interrogare. Le città usano la delimitazione del 2011 (610 sistemi, composizione al 1° gennaio 2023), che ISTAT pubblica come tabella codificata.",
+  "Griglia della popolazione: 504 residenti in celle della griglia censuaria che non toccano nessun poligono comunale (disallineamenti di confine e di costa tra i due prodotti ISTAT) non sono su alcuna casella.",
+  "I passaggi di territorio tra comuni che non hanno cambiato alcun codice (frazioni che passano da un comune a un altro) non sono modellati: i risultati seguono il comune com'era il giorno delle elezioni."
+ ],
+ "notes": {
+  "CHES 2024 scores Azione-Italia Viva as one party (id 849)": "CHES 2024 assegna un punteggio ad Azione-Italia Viva come a un unico partito (id 849)",
+  "CHES LN": "CHES LN",
+  "CHES id 849 (Azione)": "CHES id 849 (Azione)",
+  "Valle d'Aosta single-member contest: not scored": "Collegio uninominale della Valle d'Aosta: senza punteggio",
+  "members +E (scored) + Italia Viva / PSI / Radicali / LDE (not scored separately)": "membri +E (con punteggio) + Italia Viva / PSI / Radicali / LDE (senza punteggio separato)",
+  "members +Europa party / Italia in Comune / PDE: none scored in the 2019 wave (Radicali Italiani is scored but was not on this symbol)": "membri Partito +Europa / Italia in Comune / PDE: nessuno con punteggio nell'ondata 2019 (Radicali Italiani ha un punteggio, ma non era su questo simbolo)",
+  "members FI (scored) + Noi Moderati (not scored)": "membri FI (con punteggio) + Noi Moderati (senza punteggio)",
+  "members Radicali Italiani (scored) + Forza Europa and Centro Democratico (not scored)": "membri Radicali Italiani (con punteggio) + Forza Europa e Centro Democratico (senza punteggio)",
+  "members SI (scored) + Articolo 1-MDP and Possibile (not scored)": "membri SI (con punteggio) + Articolo 1-MDP e Possibile (senza punteggio)",
+  "members SI (scored) + Rifondazione Comunista (not scored)": "membri SI (con punteggio) + Rifondazione Comunista (senza punteggio)",
+  "members SI and EV": "membri SI ed EV",
+  "members SVP (scored) + PATT (not scored)": "membri SVP (con punteggio) + PATT (senza punteggio)",
+  "not scored": "senza punteggio",
+  "not scored in the 2019 wave": "senza punteggio nell'ondata 2019"
+ },
+ "sources": {
+  "eligendo": "Ministero dell'Interno",
+  "ondata2022": "onData",
+  "ches": "CHES",
+  "situas": "ISTAT SITUAS",
+  "istat_codes": "Codici ISTAT",
+  "istat_boundaries": "Confini ISTAT",
+  "popgrid": "Griglia ISTAT 1 km",
+  "istat_pop": "Popolazione ISTAT",
+  "mef": "MEF",
+  "census": "Censimento ISTAT",
+  "asia": "ISTAT ASIA",
+  "tinitaly": "INGV TINITALY",
+  "luisa": "JRC LUISA",
+  "ingv": "INGV",
+  "ispra": "ISPRA",
+  "sll": "ISTAT SLL",
+  "unesco": "UNESCO",
+  "ports": "Eurostat"
+ }
+}

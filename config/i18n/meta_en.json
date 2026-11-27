@@ -227,5 +227,25 @@
   "members SVP (scored) + PATT (not scored)": "members SVP (scored) + PATT (not scored)",
   "not scored": "not scored",
   "not scored in the 2019 wave": "not scored in the 2019 wave"
+ },
+ "sources": {
+  "eligendo": "Interior Ministry",
+  "ondata2022": "onData",
+  "ches": "CHES",
+  "situas": "ISTAT SITUAS",
+  "istat_codes": "ISTAT codes",
+  "istat_boundaries": "ISTAT boundaries",
+  "popgrid": "ISTAT 1 km grid",
+  "istat_pop": "ISTAT population",
+  "mef": "MEF",
+  "census": "ISTAT census",
+  "asia": "ISTAT ASIA",
+  "tinitaly": "INGV TINITALY",
+  "luisa": "JRC LUISA",
+  "ingv": "INGV",
+  "ispra": "ISPRA",
+  "sll": "ISTAT SLL",
+  "unesco": "UNESCO",
+  "ports": "Eurostat"
  }
 }

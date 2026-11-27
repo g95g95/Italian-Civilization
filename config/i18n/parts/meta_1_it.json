@@ -11,7 +11,7 @@
  ],
  "rules": [
   {
-   "term": "Ideologia (livello religione)",
+   "term": "Ideologia (la religione del gioco)",
    "quantity": "Punteggio degli esperti sinistra-destra",
    "rule": "Media del punteggio generale CHES sinistra-destra di ciascuna lista (0 estrema sinistra, 10 estrema destra), ponderata per i suoi voti validi nella casella."
   },

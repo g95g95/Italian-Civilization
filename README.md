@@ -5,6 +5,7 @@ data and a published rule, with the political spectrum as the main lens. It desc
 and expert scores; it makes no predictions and takes no position on parties.
 
 - **App:** https://g95g95.github.io/Italian-Civilization/ (GitHub Pages, published from `web/` by `.github/workflows/pages.yml`). Locally: `make serve` and open http://localhost:8000.
+- **Languages:** Italian and English. The app opens in the browser's language; the Italiano / English button switches. English is the source; Italian lives in `config/i18n/` (`python scripts/i18n.py extract|merge|check`).
 - **Spec:** [`docs/build_spec.md`](docs/build_spec.md). **Gaps:** [`GAPS.md`](GAPS.md). **Sources:** [`SOURCES.md`](SOURCES.md).
 
 ## What is on the map

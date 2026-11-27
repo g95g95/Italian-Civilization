@@ -68,6 +68,7 @@ def meta_texts() -> dict:
         "gaps": [l[2:].strip() for l in gaps.splitlines() if l.startswith("- ")],
         "elections": {k: v[2] for k, v in ELECTIONS.items()},
         "notes": notes,
+        "sources": {k: v.get("short", k) for k, v in json.loads((CONFIG / "sources.json").read_text(encoding="utf-8")).items()},
     }
 
 
@@ -121,6 +122,20 @@ def build():
                                                           ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 
+def _it_numbers(o):
+    """Italian number style in translated prose: 7,894 -> 7.894 and 0.1% -> 0,1% (versions such as
+    TINITALY 1.1 and dates are left alone)."""
+    if isinstance(o, dict):
+        return {k: _it_numbers(v) for k, v in o.items()}
+    if isinstance(o, list):
+        return [_it_numbers(v) for v in o]
+    if not isinstance(o, str):
+        return o
+    s = re.sub(r"(?<![\w.])(\d{1,3}),(\d{3})(?!\d)", "\\1\u2009\\2", o)      # thousands: mark
+    s = re.sub(r"(?<!TINITALY )(?<![\w/])(\d+)\.(\d+)(?=\s*(?:%|km|m\b|times|volte|\)|,|\s|$))", "\\1,\\2", s)
+    return s.replace("\u2009", ".")
+
+
 def merge():
     """Join the translated chunks in config/i18n/parts/ into it_ui.json and it_meta.json."""
     P = I18N / "parts"
@@ -132,6 +147,7 @@ def merge():
     meta = {}
     for f in sorted(P.glob("meta_*_it.json")):
         meta.update(json.loads(f.read_text(encoding="utf-8")))
+    meta = _it_numbers(meta)
     (I18N / "it_meta.json").write_text(json.dumps(meta, indent=1, ensure_ascii=False), encoding="utf-8")
 
 

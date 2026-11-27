@@ -1,0 +1,22 @@
+{
+ "sources": {
+  "eligendo": "Ministero dell'Interno",
+  "ondata2022": "onData",
+  "ches": "CHES",
+  "situas": "ISTAT SITUAS",
+  "istat_codes": "Codici ISTAT",
+  "istat_boundaries": "Confini ISTAT",
+  "popgrid": "Griglia ISTAT 1 km",
+  "istat_pop": "Popolazione ISTAT",
+  "mef": "MEF",
+  "census": "Censimento ISTAT",
+  "asia": "ISTAT ASIA",
+  "tinitaly": "INGV TINITALY",
+  "luisa": "JRC LUISA",
+  "ingv": "INGV",
+  "ispra": "ISPRA",
+  "sll": "ISTAT SLL",
+  "unesco": "UNESCO",
+  "ports": "Eurostat"
+ }
+}
