@@ -4,7 +4,7 @@ Italy as a Civilization-style hex map, where every tile, city and yield is compu
 data and a published rule, with the political spectrum as the main lens. It describes votes cast
 and expert scores; it makes no predictions and takes no position on parties.
 
-- **App:** `web/` is a static site (no server). Run `make serve` and open http://localhost:8000.
+- **App:** https://g95g95.github.io/Italian-Civilization/ (GitHub Pages, published from `web/` by `.github/workflows/pages.yml`). Locally: `make serve` and open http://localhost:8000.
 - **Spec:** [`docs/build_spec.md`](docs/build_spec.md). **Gaps:** [`GAPS.md`](GAPS.md). **Sources:** [`SOURCES.md`](SOURCES.md).
 
 ## What is on the map
