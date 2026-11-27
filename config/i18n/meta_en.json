@@ -1,0 +1,231 @@
+{
+ "method": [
+  "Base unit: the comune, joined on the six-digit ISTAT code. Every older code (2016-2026) is mapped to the 7,894 comuni in force today through ISTAT's register and its published list of mergers.",
+  "The Interior Ministry's files name comuni without codes. Each name is looked up, exactly, in ISTAT's list of comuni in force on polling day; the few labels that differ are listed one by one in config/name_aliases.csv.",
+  "Grid: pointy-top hexagons 10 km across the flats, in UTM zone 32N. A tile is kept when at least 15% of it is land: 3,716 tiles.",
+  "Counts (votes, electors, residents, euros, jobs) are spread from comuni to tiles by where people live, using ISTAT's 2021 census grid of 1 km cells. Areas (hazard zones) are spread by area. Rates are worked out after spreading, never averaged.",
+  "Residents on a dropped coastal sliver move to the nearest kept tile, so nobody leaves the map. Tiles or comuni without data are drawn as missing, never filled in.",
+  "Camera: votes cast for a candidate only are shared among that candidate's lists in proportion to their votes in the single-member constituency, as the electoral law does.",
+  "Ideology: each list takes its score from the Chapel Hill Expert Survey wave closest to the vote. A joint list takes the simple mean of its scored member parties. Lists without a score are left out of the average and each tile reports the share of valid votes that had one.",
+  "Vote from abroad is not on the map. National figures in the app are Italy only."
+ ],
+ "rules": [
+  {
+   "term": "Ideology (religion layer)",
+   "quantity": "Left-right expert score",
+   "rule": "Average of each list's CHES general left-right score (0 far left, 10 far right), weighted by its valid votes on the tile."
+  },
+  {
+   "term": "Economic and social axes",
+   "quantity": "CHES lrecon and galtan",
+   "rule": "The same vote-weighted average with the survey's economic left-right and GAL-TAN scores."
+  },
+  {
+   "term": "Loyalty",
+   "quantity": "Turnout",
+   "rule": "Voters divided by electors."
+  },
+  {
+   "term": "Coalition margin",
+   "quantity": "Centre-right minus centre-left",
+   "rule": "Valid votes of the registered centre-right coalition lists minus those of the centre-left lists, in points of valid votes (Camera only)."
+  },
+  {
+   "term": "Swing",
+   "quantity": "Change in ideology score",
+   "rule": "Ideology score at the chosen election minus the score at the earlier one, tile by tile."
+  },
+  {
+   "term": "Gold",
+   "quantity": "Declared income",
+   "rule": "Total taxable income (reddito imponibile IRPEF) on the tile; the map colours it per resident."
+  },
+  {
+   "term": "Science",
+   "quantity": "Graduates",
+   "rule": "Residents with a tertiary degree; the map colours them as a share of residents aged 25 and over."
+  },
+  {
+   "term": "Production",
+   "quantity": "Industrial employment",
+   "rule": "Jobs in local units of manufacturing and construction firms (Ateco C and F); the map colours their share of all local jobs."
+  },
+  {
+   "term": "Food",
+   "quantity": "Farmland",
+   "rule": "Share of the tile's land in agricultural land-cover classes (CORINE 2xx)."
+  },
+  {
+   "term": "Terrain",
+   "quantity": "Elevation and land cover",
+   "rule": "Plains below 300 m mean elevation, hills to 600 m, mountains above; forest where forest covers half the land, marsh where wetlands and lagoons cover 5% of the tile, coast where sea covers 1% of it."
+  },
+  {
+   "term": "City",
+   "quantity": "Labour-market area",
+   "rule": "One city per ISTAT labour-market area (sistema locale del lavoro 2011), placed on the comune ISTAT names as its main one."
+  },
+  {
+   "term": "Districts",
+   "quantity": "Industry specialisation",
+   "rule": "A sector whose share of the city's jobs is at least 1.5 times its national share."
+  },
+  {
+   "term": "Citizens",
+   "quantity": "Workforce",
+   "rule": "Jobs by sector in local units of firms, one square per 5,000 jobs."
+  },
+  {
+   "term": "Wonders",
+   "quantity": "Landmarks",
+   "rule": "UNESCO World Heritage sites, and ports ranked by goods handled in the latest year."
+  },
+  {
+   "term": "Government",
+   "quantity": "Winning coalition",
+   "rule": "The coalition, or list running alone, with most valid votes in the city at the Camera 2022 vote."
+  },
+  {
+   "term": "Hazards",
+   "quantity": "Earthquakes, landslides, floods",
+   "rule": "Earthquakes of magnitude 4 or more since 1985 with the epicentre on the tile; land in ISPRA landslide classes P3-P4 and flood class P2."
+  }
+ ],
+ "columns": {
+  "area_km2": {
+   "label": "Area (km²)",
+   "rule": "area of the 2026 ISTAT polygon"
+  },
+  "elev": {
+   "label": "Mean elevation (m)",
+   "rule": "mean of DEM pixels inside the comune"
+  },
+  "farmland": {
+   "label": "Farmland (% of land)",
+   "rule": "agricultural land-cover share"
+  },
+  "forest": {
+   "label": "Forest (% of land)",
+   "rule": "forest land-cover share"
+  },
+  "quakes": {
+   "label": "Earthquakes M4+ since 1985",
+   "rule": "epicentres inside the comune"
+  },
+  "landslide_pct": {
+   "label": "Landslide hazard (% of area)",
+   "rule": "ISPRA P3+P4 area / comune area"
+  },
+  "flood_pct": {
+   "label": "Flood hazard (% of area)",
+   "rule": "ISPRA P2 area / comune area"
+  },
+  "pop_res": {
+   "label": "Residents",
+   "rule": "resident population on 1 January 2025"
+  },
+  "density": {
+   "label": "Residents per km²",
+   "rule": "residents / area"
+  },
+  "income_per_taxpayer": {
+   "label": "Taxable income per taxpayer (€)",
+   "rule": "reddito imponibile / taxpayers, tax year 2024"
+  },
+  "income_per_resident": {
+   "label": "Taxable income per resident (€)",
+   "rule": "reddito imponibile 2024 / residents 1 Jan 2025"
+  },
+  "grad_pct": {
+   "label": "Graduates (% of 25+)",
+   "rule": "residents with a tertiary degree / residents aged 25+"
+  },
+  "old_pct": {
+   "label": "Aged 65+ (%)",
+   "rule": "residents aged 65+ / residents"
+  },
+  "foreign_pct": {
+   "label": "Foreign citizens (%)",
+   "rule": "residents with foreign citizenship / residents"
+  },
+  "employment_pct": {
+   "label": "Employment rate 15+ (%)",
+   "rule": "employed residents / residents aged 15+"
+  },
+  "unemployment_pct": {
+   "label": "Unemployment rate (%)",
+   "rule": "unemployed / labour force"
+  },
+  "ind_jobs_pct": {
+   "label": "Industrial jobs (% of local jobs)",
+   "rule": "Ateco C+F jobs / all jobs in local units of firms"
+  },
+  "jobs_per_resident": {
+   "label": "Local jobs per resident",
+   "rule": "jobs in local units of firms / residents"
+  }
+ },
+ "sectors": {
+  "B": "Mining",
+  "C": "Manufacturing",
+  "D": "Energy",
+  "E": "Water and waste",
+  "F": "Construction",
+  "G": "Trade",
+  "H": "Transport",
+  "I": "Hotels and food",
+  "J": "Information",
+  "K": "Finance",
+  "L": "Real estate",
+  "M": "Professional services",
+  "N": "Business support",
+  "P": "Education",
+  "Q": "Health and care",
+  "R": "Arts and leisure",
+  "S": "Other services"
+ },
+ "gaps": [
+  "The Interior Ministry's open-data files name comuni but carry no ISTAT code. The build bridges them with an exact lookup in ISTAT's register for polling day (scripts/names.py), plus 18 hand-checked spellings in config/name_aliases.csv. This is the only name-based step, and it is a deviation from the rule \"joins are on ISTAT codes, never on names\". The other datasets (MEF, ISTAT, ISPRA, ASIA) do carry codes and join on them.",
+  "Camera 2022: the Ministry's open-data page says comune-level figures are the unofficial ones sent by comuni, while national totals come from the official proclamations, so the two can differ. Candidate-only votes are also shared among coalition lists at polling-station level, which comune data cannot reproduce exactly. Every list lands within 0.1% of the official national total except the two smallest coalition partners: Noi Moderati (−0.37%) and Impegno Civico (−0.17%). Camera 2018, rebuilt the same way, is within 0.03% for every list.",
+  "No independent national figure is in the Ministry's open data for European 2019, the 2016 referendums or the 2020 referendum: only the comune file exists. For those votes the gate checks that no vote is lost between comuni and tiles, not that the totals match a separate ministry count.",
+  "The section-level files for European 2024 and the 2025 and 2026 referendums are incomplete (for example, whole Sicilian comuni are missing from the 2026 file). They are used only to confirm, comune by comune, the figures of the complete comune-level file.",
+  "Vote from abroad is not on the map (it has no place). National figures in the app are for Italy only.",
+  "Valle d'Aosta elects its deputy in a single-member contest with local symbols. Its Camera tiles show turnout and candidate shares but no ideology score. European elections and referendums cover Valle d'Aosta normally.",
+  "European 2019: the +Europa list (+Europa, Italia in Comune, PDE) and Europa Verde have no score, because the 2019 survey wave rated neither party; together they hold 5.4% of valid votes. Radicali Italiani is scored but was not a party on that symbol. In the 2018 Camera vote, +Europa was a joint list that included Radicali Italiani, so it takes that party's score. This choice changes what the 2019 number means and should be confirmed.",
+  "CORINE Land Cover 2018 could not be downloaded: every EEA host failed through this environment's proxy. Land cover uses the JRC LUISA Base Map 2018, a 100 m refinement of CORINE 2018 that keeps the CORINE class codes.",
+  "Elevation uses TINITALY 1.1 sampled at 250 m through INGV's coverage service, not the full 10 m grid (several GB). Means over 10 km tiles are unaffected; single peaks come out slightly low.",
+  "Universities: the MUR open-data portal (dati-ustat.mur.gov.it) did not answer through the proxy, so the Wonders layer has UNESCO sites and ports only.",
+  "UNESCO: the official list endpoints sit behind a bot challenge. Sites come from UNESCO's 2023 export (GitHub mirror), so the three Italian sites inscribed since 2023 are missing, and four cross-border sites whose reference point lies abroad have no tile.",
+  "Labour-market areas: ISTAT published a 2021 delineation (515 areas) in October 2025, but its comune-to-area table is only on SITUAS, which this environment could not query for it. Cities use the 2011 delineation (610 areas, composition at 1 January 2023), which ISTAT publishes as a coded table.",
+  "Population grid: 504 residents in census-grid cells that touch no comune polygon (border and coast mismatches between the two ISTAT products) are not on any tile.",
+  "Territory transfers between comuni that did not change any code (frazioni moving from one comune to another) are not modelled: results follow the comune as it was on polling day."
+ ],
+ "elections": {
+  "ref2016a": "Referendum 17 Apr 2016 (offshore drilling)",
+  "ref2016c": "Constitutional referendum 4 Dec 2016",
+  "cam2018": "Camera 2018",
+  "eu2019": "European Parliament 2019",
+  "ref2020": "Constitutional referendum 20–21 Sep 2020",
+  "ref2022": "Referendums 12 Jun 2022 (justice)",
+  "cam2022": "Camera 2022",
+  "eu2024": "European Parliament 2024",
+  "ref2025": "Referendums 8–9 Jun 2025 (work, citizenship)",
+  "ref2026": "Constitutional referendum 22–23 Mar 2026 (judiciary)"
+ },
+ "notes": {
+  "CHES 2024 scores Azione-Italia Viva as one party (id 849)": "CHES 2024 scores Azione-Italia Viva as one party (id 849)",
+  "CHES LN": "CHES LN",
+  "CHES id 849 (Azione)": "CHES id 849 (Azione)",
+  "Valle d'Aosta single-member contest: not scored": "Valle d'Aosta single-member contest: not scored",
+  "members +E (scored) + Italia Viva / PSI / Radicali / LDE (not scored separately)": "members +E (scored) + Italia Viva / PSI / Radicali / LDE (not scored separately)",
+  "members +Europa party / Italia in Comune / PDE: none scored in the 2019 wave (Radicali Italiani is scored but was not on this symbol)": "members +Europa party / Italia in Comune / PDE: none scored in the 2019 wave (Radicali Italiani is scored but was not on this symbol)",
+  "members FI (scored) + Noi Moderati (not scored)": "members FI (scored) + Noi Moderati (not scored)",
+  "members Radicali Italiani (scored) + Forza Europa and Centro Democratico (not scored)": "members Radicali Italiani (scored) + Forza Europa and Centro Democratico (not scored)",
+  "members SI (scored) + Articolo 1-MDP and Possibile (not scored)": "members SI (scored) + Articolo 1-MDP and Possibile (not scored)",
+  "members SI (scored) + Rifondazione Comunista (not scored)": "members SI (scored) + Rifondazione Comunista (not scored)",
+  "members SI and EV": "members SI and EV",
+  "members SVP (scored) + PATT (not scored)": "members SVP (scored) + PATT (not scored)",
+  "not scored": "not scored",
+  "not scored in the 2019 wave": "not scored in the 2019 wave"
+ }
+}

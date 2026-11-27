@@ -113,42 +113,43 @@ input[type=search]{font:13px var(--body);color:var(--ink);background:var(--panel
 <header>
   <div class="top">
     <h1>Civ <span>Italia</span></h1>
-    <div class="row"><label for="elec" class="note" style="margin:0">Election</label><select id="elec"></select></div>
+    <div class="row"><label for="elec" class="note" style="margin:0" data-i18n="Election">Election</label><select id="elec"></select></div>
     <div class="sp"></div>
     <div class="tools">
-      <button class="btn" id="bExplorer" type="button">Explorer</button>
-      <button class="btn" id="bHelp" type="button">Rules &amp; sources</button>
-      <button class="btn" id="bTheme" type="button" aria-label="Switch light or dark theme">Theme</button>
+      <button class="btn" id="bExplorer" type="button" data-i18n="Explorer">Explorer</button>
+      <button class="btn" id="bHelp" type="button" data-i18n="Rules & sources">Rules &amp; sources</button>
+      <button class="btn" id="bLang" type="button" lang="it">Italiano</button>
+      <button class="btn" id="bTheme" type="button" aria-label="Switch light or dark theme" data-i18n="Theme" data-i18n-aria="Switch light or dark theme">Theme</button>
     </div>
   </div>
-  <div class="lenses" role="group" aria-label="Map lens" id="lenses"></div>
+  <div class="lenses" role="group" aria-label="Map lens" data-i18n-aria="Map lens" id="lenses"></div>
   <div class="legend" id="legend" aria-live="polite"></div>
 </header>
 <div class="wrap">
 <main>
-  <canvas id="map" aria-label="Hex map of Italy coloured by the selected lens. The same figures for every city are in the table in the side panel."></canvas>
-  <div class="zoom"><button id="zin" aria-label="Zoom in" type="button">+</button><button id="zout" aria-label="Zoom out" type="button">−</button><button id="zfit" aria-label="Show all of Italy" type="button">⌂</button></div>
-  <div class="hint" id="hint">Tap a tile or a city</div>
+  <canvas id="map" aria-label="Hex map of Italy coloured by the selected lens. The same figures for every city are in the table in the side panel." data-i18n-aria="Hex map of Italy coloured by the selected lens. The same figures for every city are in the table in the side panel."></canvas>
+  <div class="zoom"><button id="zin" aria-label="Zoom in" data-i18n-aria="Zoom in" type="button">+</button><button id="zout" aria-label="Zoom out" data-i18n-aria="Zoom out" type="button">−</button><button id="zfit" aria-label="Show all of Italy" data-i18n-aria="Show all of Italy" type="button">⌂</button></div>
+  <div class="hint" id="hint" data-i18n="Tap a tile or a city">Tap a tile or a city</div>
 </main>
-<section id="sheet" aria-live="polite"><p class="note">Loading the map…</p></section>
+<section id="sheet" aria-live="polite"><p class="note">Loading the map… / Caricamento della mappa…</p></section>
 </div>
 
 <div class="ov" id="explorer" hidden>
-  <header><div class="top"><h1>Explorer</h1><span class="note" style="margin:0">every comune, any two columns</span><div class="sp"></div><button class="btn" id="xClose" type="button">Back to map</button></div>
+  <header><div class="top"><h1 data-i18n="Explorer">Explorer</h1><span class="note" style="margin:0" data-i18n="every comune, any two columns">every comune, any two columns</span><div class="sp"></div><button class="btn" id="xClose" type="button" data-i18n="Back to map">Back to map</button></div>
   <div class="row">
     <label for="xX" class="note" style="margin:0">X</label><select id="xX"></select>
     <label for="xY" class="note" style="margin:0">Y</label><select id="xY"></select>
-    <label for="xR" class="note" style="margin:0">Region</label><select id="xR"></select>
-    <input type="search" id="xQ" placeholder="Find a comune" aria-label="Find a comune">
+    <label for="xR" class="note" style="margin:0" data-i18n="Region">Region</label><select id="xR"></select>
+    <input type="search" id="xQ" placeholder="Find a comune" aria-label="Find a comune" data-i18n-ph="Find a comune" data-i18n-aria="Find a comune">
   </div></header>
   <div class="ovbody"><div class="ovgrid">
-    <div class="card"><canvas id="scatter" aria-label="Scatter plot of the two chosen columns, one dot per comune"></canvas><p class="note" id="xStat"></p></div>
+    <div class="card"><canvas id="scatter" aria-label="Scatter plot of the two chosen columns, one dot per comune" data-i18n-aria="Scatter plot of the two chosen columns, one dot per comune"></canvas><p class="note" id="xStat"></p></div>
     <div class="card"><div class="tscroll" style="max-height:60vh"><table class="tbl" id="xTable"></table></div><p class="note" id="xNote"></p></div>
   </div></div>
 </div>
 
 <div class="ov" id="help" hidden>
-  <header><div class="top"><h1>Rules &amp; sources</h1><div class="sp"></div><button class="btn" id="hClose" type="button">Back to map</button></div></header>
+  <header><div class="top"><h1 data-i18n="Rules & sources">Rules &amp; sources</h1><div class="sp"></div><button class="btn" id="hClose" type="button" data-i18n="Back to map">Back to map</button></div></header>
   <div class="ovbody"><div class="prose" id="helpBody"></div></div>
 </div>
 <script src="app.js"></script>

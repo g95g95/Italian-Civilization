@@ -1,0 +1,199 @@
+{
+ "method": [
+  "Unità di base: il comune, collegato tramite il codice ISTAT a sei cifre. Ogni codice più vecchio (2016-2026) è ricondotto ai 7,894 comuni oggi in vigore attraverso il registro ISTAT e il suo elenco pubblicato delle fusioni.",
+  "I file del Ministero dell'Interno indicano i comuni senza codice. Ogni nome viene cercato, in modo esatto, nell'elenco ISTAT dei comuni in vigore alla data del voto; le poche etichette diverse sono elencate una per una in config/name_aliases.csv.",
+  "Griglia: esagoni a punta in alto, di 10 km tra i lati piatti, nel sistema UTM fuso 32N. Una casella è mantenuta se almeno il 15% della sua superficie è terra: 3,716 caselle.",
+  "I conteggi (voti, elettori, residenti, euro, addetti) sono distribuiti dai comuni alle caselle in base a dove vivono le persone, usando la griglia da 1 km di celle del censimento ISTAT 2021. Le superfici (zone di pericolo) sono distribuite in base all'area. I tassi sono calcolati dopo la distribuzione, mai come medie.",
+  "I residenti di una striscia costiera scartata passano alla casella mantenuta più vicina, così nessuno resta fuori dalla mappa. Le caselle o i comuni privi di dati sono disegnati come mancanti, mai riempiti con stime.",
+  "Camera: i voti dati solo a un candidato sono ripartiti tra le liste di quel candidato in proporzione ai loro voti nel collegio uninominale, come prevede la legge elettorale.",
+  "Ideologia: ogni lista prende il punteggio dall'ondata della Chapel Hill Expert Survey più vicina al voto. Una lista congiunta prende la media semplice dei partiti membri che hanno un punteggio. Le liste senza punteggio sono escluse dalla media e ogni casella indica la quota di voti validi che ne avevano uno.",
+  "Il voto dall'estero non è sulla mappa. I dati nazionali dell'app riguardano solo l'Italia."
+ ],
+ "rules": [
+  {
+   "term": "Ideologia (livello religione)",
+   "quantity": "Punteggio degli esperti sinistra-destra",
+   "rule": "Media del punteggio generale CHES sinistra-destra di ciascuna lista (0 estrema sinistra, 10 estrema destra), ponderata per i suoi voti validi nella casella."
+  },
+  {
+   "term": "Assi economico e sociale",
+   "quantity": "CHES lrecon e galtan",
+   "rule": "La stessa media ponderata per i voti, con i punteggi dell'indagine su sinistra-destra economica e GAL-TAN."
+  },
+  {
+   "term": "Lealtà",
+   "quantity": "Affluenza",
+   "rule": "Votanti divisi per elettori."
+  },
+  {
+   "term": "Margine tra coalizioni",
+   "quantity": "Centrodestra meno centrosinistra",
+   "rule": "Voti validi delle liste delle coalizioni di centrodestra registrate meno quelli delle liste di centrosinistra, in punti di voti validi (solo Camera)."
+  },
+  {
+   "term": "Spostamento",
+   "quantity": "Variazione del punteggio di ideologia",
+   "rule": "Punteggio di ideologia nella elezione scelta meno quello nella elezione precedente, casella per casella."
+  },
+  {
+   "term": "Oro",
+   "quantity": "Reddito dichiarato",
+   "rule": "Reddito imponibile totale (reddito imponibile IRPEF) della casella; la mappa lo colora per residente."
+  },
+  {
+   "term": "Scienza",
+   "quantity": "Laureati",
+   "rule": "Residenti con titolo di istruzione terziaria; la mappa li colora come quota dei residenti di 25 anni e oltre."
+  },
+  {
+   "term": "Produzione",
+   "quantity": "Occupazione industriale",
+   "rule": "Addetti delle unità locali di imprese manifatturiere e di costruzioni (Ateco C e F); la mappa colora la loro quota di tutti gli addetti locali."
+  },
+  {
+   "term": "Cibo",
+   "quantity": "Terreni agricoli",
+   "rule": "Quota del suolo della casella nelle classi di copertura agricola CORINE 2xx."
+  },
+  {
+   "term": "Terreno",
+   "quantity": "Altitudine e copertura del suolo",
+   "rule": "Pianura sotto i 300 m di altitudine media, collina fino a 600 m, montagna sopra; bosco dove il bosco copre metà del suolo, palude dove zone umide e lagune coprono il 5% della casella, costa dove il mare copre l'1%."
+  },
+  {
+   "term": "Città",
+   "quantity": "Sistema locale del lavoro",
+   "rule": "Una città per ogni sistema locale del lavoro ISTAT (2011), collocata sul comune che ISTAT indica come principale."
+  },
+  {
+   "term": "Distretti",
+   "quantity": "Specializzazione industriale",
+   "rule": "Un settore il cui peso sugli addetti della città è almeno 1,5 volte il suo peso nazionale."
+  },
+  {
+   "term": "Cittadini",
+   "quantity": "Forza lavoro",
+   "rule": "Addetti per settore nelle unità locali delle imprese, un quadratino ogni 5.000 addetti."
+  },
+  {
+   "term": "Meraviglie",
+   "quantity": "Punti di riferimento",
+   "rule": "Siti UNESCO Patrimonio dell'Umanità e porti ordinati per merci movimentate nell'ultimo anno disponibile."
+  },
+  {
+   "term": "Governo",
+   "quantity": "Coalizione vincente",
+   "rule": "La coalizione, o la lista che corre da sola, con più voti validi nella città alle elezioni Camera 2022."
+  },
+  {
+   "term": "Rischi",
+   "quantity": "Terremoti, frane, alluvioni",
+   "rule": "Terremoti di magnitudo 4 o superiore dal 1985 con epicentro nella casella; terreno nelle classi di frana ISPRA P3-P4 e di alluvione P2."
+  }
+ ],
+ "columns": {
+  "area_km2": {
+   "label": "Superficie (km²)",
+   "rule": "superficie del poligono ISTAT 2026"
+  },
+  "elev": {
+   "label": "Altitudine media (m)",
+   "rule": "media dei pixel del DEM all'interno del comune"
+  },
+  "farmland": {
+   "label": "Terreni agricoli (% del suolo)",
+   "rule": "quota di copertura agricola del suolo"
+  },
+  "forest": {
+   "label": "Bosco (% del suolo)",
+   "rule": "quota di bosco nella copertura del suolo"
+  },
+  "quakes": {
+   "label": "Terremoti M4+ dal 1985",
+   "rule": "epicentri all'interno del comune"
+  },
+  "landslide_pct": {
+   "label": "Pericolo frane (% della superficie)",
+   "rule": "superficie ISPRA P3+P4 / superficie del comune"
+  },
+  "flood_pct": {
+   "label": "Pericolo alluvioni (% della superficie)",
+   "rule": "superficie ISPRA P2 / superficie del comune"
+  },
+  "pop_res": {
+   "label": "Residenti",
+   "rule": "popolazione residente al 1° gennaio 2025"
+  },
+  "density": {
+   "label": "Residenti per km²",
+   "rule": "residenti / superficie"
+  },
+  "income_per_taxpayer": {
+   "label": "Reddito imponibile per contribuente (€)",
+   "rule": "reddito imponibile / contribuenti, anno d'imposta 2024"
+  },
+  "income_per_resident": {
+   "label": "Reddito imponibile per residente (€)",
+   "rule": "reddito imponibile 2024 / residenti al 1° gennaio 2025"
+  },
+  "grad_pct": {
+   "label": "Laureati (% dei 25+)",
+   "rule": "residenti con titolo di istruzione terziaria / residenti di 25 anni e oltre"
+  },
+  "old_pct": {
+   "label": "Di 65 anni e oltre (%)",
+   "rule": "residenti di 65 anni e oltre / residenti"
+  },
+  "foreign_pct": {
+   "label": "Cittadini stranieri (%)",
+   "rule": "residenti con cittadinanza straniera / residenti"
+  },
+  "employment_pct": {
+   "label": "Tasso di occupazione 15+ (%)",
+   "rule": "occupati residenti / residenti di 15 anni e oltre"
+  },
+  "unemployment_pct": {
+   "label": "Tasso di disoccupazione (%)",
+   "rule": "disoccupati / forza lavoro"
+  },
+  "ind_jobs_pct": {
+   "label": "Posti di lavoro industriali (% degli addetti locali)",
+   "rule": "addetti Ateco C+F / tutti gli addetti delle unità locali di imprese"
+  },
+  "jobs_per_resident": {
+   "label": "Addetti locali per residente",
+   "rule": "addetti delle unità locali di imprese / residenti"
+  }
+ },
+ "sectors": {
+  "B": "Estrazione di minerali",
+  "C": "Manifattura",
+  "D": "Energia",
+  "E": "Acqua e rifiuti",
+  "F": "Costruzioni",
+  "G": "Commercio",
+  "H": "Trasporti",
+  "I": "Alberghi e ristorazione",
+  "J": "Informazione",
+  "K": "Finanza",
+  "L": "Immobiliare",
+  "M": "Servizi professionali",
+  "N": "Servizi di supporto alle imprese",
+  "P": "Istruzione",
+  "Q": "Sanità e assistenza",
+  "R": "Arte e intrattenimento",
+  "S": "Altri servizi"
+ },
+ "elections": {
+  "ref2016a": "Referendum 17 apr 2016 (trivellazioni in mare)",
+  "ref2016c": "Referendum costituzionale 4 dic 2016",
+  "cam2018": "Camera 2018",
+  "eu2019": "Parlamento europeo 2019",
+  "ref2020": "Referendum costituzionale 20–21 set 2020",
+  "ref2022": "Referendum 12 giu 2022 (giustizia)",
+  "cam2022": "Camera 2022",
+  "eu2024": "Parlamento europeo 2024",
+  "ref2025": "Referendum 8–9 giu 2025 (lavoro, cittadinanza)",
+  "ref2026": "Referendum costituzionale 22–23 mar 2026 (magistratura)"
+ }
+}

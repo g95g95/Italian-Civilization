@@ -239,3 +239,10 @@ def test_every_rule_names_a_source():
     meta = json.loads((WEB / "data" / "meta.json").read_text())
     for r in meta["rules"]:
         assert r["source"] and all(s in meta["sources"] for s in r["source"]), r["term"]
+
+
+@pytest.mark.phase6
+def test_italian_translation_complete():
+    from i18n import missing
+    m = missing()
+    assert not m, m[:20]

@@ -145,6 +145,9 @@ def main():
 
     comuni_table(com, csll, cities, regions)
     meta(elist)
+    import i18n
+    i18n.build()
+    log("wrote i18n_it.json")
 
 
 SUM_COLS = {"pop_res", "pop_cens", "taxpayers", "income", "grad", "pop25", "pop65", "foreign", "employed", "unemployed", "labour", "pop15", "jobs_total", "jobs_ind"}

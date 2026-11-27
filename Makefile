@@ -2,7 +2,10 @@
 PY := python3
 S := scripts
 
-.PHONY: all download phase1 phase2 phase3 phase4 phase5 phase6 test serve clean sources
+i18n:
+	cd $(S) && $(PY) i18n.py extract && $(PY) i18n.py check
+
+.PHONY: i18n all download phase1 phase2 phase3 phase4 phase5 phase6 test serve clean sources
 
 all: phase6
 
@@ -30,6 +33,7 @@ phase5: phase4
 	$(PY) -m pytest -q -m phase5
 
 phase6: phase5 sources
+	cd $(S) && $(PY) i18n.py check
 	cd $(S) && $(PY) export.py
 	$(PY) -m pytest -q -m phase6
 
